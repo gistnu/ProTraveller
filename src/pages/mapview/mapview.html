@@ -1,0 +1,111 @@
+
+<ion-header >
+    <ion-navbar >
+        <button ion-button menuToggle class="home_bg">
+    </button>
+        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+
+
+<ion-content>
+  <ion-card>
+
+   <img src="../assets/getlocation.png">
+
+  <ion-fab right top>
+    <button ion-fab>
+      <ion-icon name="pin"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-item>
+    <ion-icon name="pin" item-start large></ion-icon>
+      <h2>วัดจุฬามณี</h2>
+      <p>ที่ตั้ง : 23/2 ซอยจุฬามณี ซอย 3 ตำบล ท่าทอง อำเภอเมืองพิษณุโลก พิษณุโลก 65000</p>
+  </ion-item>
+
+  <ion-item>
+    <ion-icon name="flash" item-left large ></ion-icon>
+    <h2>พบการเกิดโรคในระยะใกล้เคียง </h2>
+    
+  </ion-item>
+
+  <ion-item>
+
+  
+
+
+  <table class="table">
+                    <tbody>
+
+                        <tr class="table-row">
+                            <td class="table-img">
+                               <img src="images/in.jpg" alt="" />
+                            </td>
+                            <td class="table-text">
+                              <h6>หมู่บ้าน บ้านกอก</h6>
+                                
+                            </td>
+                            <td>
+                              <p>พบผู้ป่วย 1 ราย</p>
+                            </td>
+                        </tr>
+
+                        <tr class="table-row">
+                            <td class="table-img">
+                               <img src="images/in.jpg" alt="" />
+                            </td>
+                            <td class="table-text">
+                              <h6>หมู่บ้าน ท่าทองตะวันตก</h6>
+                                
+                            </td>
+                            <td>
+                              <p>พบผู้ป่วย 1 ราย</p>
+                            </td>
+                        </tr>
+
+                        <tr class="table-row">
+                            <td class="table-img">
+                               <img src="images/in.jpg" alt="" />
+                            </td>
+                            <td class="table-text">
+                              <h6>หมู่บ้าน หนองหัวยางเหนือ</h6>
+                                
+                            </td>
+                            <td>
+                              <p>พบผู้ป่วย 1 ราย</p>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+
+  </ion-item>
+
+
+
+  <ion-item>
+
+    <span item-left>
+
+        <button ion-button icon-left clear item-end (click)="goToHowto()">
+          <ion-icon name="navigate"></ion-icon>
+          แนวทางป้องกัน
+        </button>
+      
+    </span>
+
+    <button ion-button icon-left clear item-end>
+      <ion-icon name="navigate"></ion-icon>
+      ค้นหาเส้นทางมาที่นี่
+    </button>
+
+  </ion-item>
+
+</ion-card>
+
+</ion-content>

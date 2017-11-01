@@ -1,0 +1,32 @@
+
+<ion-header >
+    <ion-navbar >
+        <button ion-button menuToggle class="home_bg">
+    </button>
+        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="home_bg">
+    <ion-grid  >
+      <ion-row>
+        <ion-col>
+           <a (click)="goToList()"><img src="../assets/menu1.png" alt=""></a>
+        </ion-col>
+        <ion-col>
+           <a (click)="goToMap()"><img src="../assets/menu2.png" alt=""></a>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+            <a (click)="goToHospital()"><img src="../assets/menu3.png" alt=""></a>
+        </ion-col>
+        <ion-col>
+           <a (click)="goToFaq()"><img src="../assets/menu4.png" alt=""></a>
+        </ion-col>
+      </ion-row>
+    </ion-grid> 
+
+
+
+</ion-content>
