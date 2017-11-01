@@ -1,7 +1,8 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import leaflet from 'leaflet';
+import { ModalController } from 'ionic-angular';
 
+import { DirectionPage } from '../direction/direction';
 
 @Component({
   selector: 'page-hospital',
@@ -13,9 +14,24 @@ export class HospitalPage {
 
 @ViewChild('map') mapContainer: ElementRef;
   map: any;
-  constructor(public navCtrl: NavController) {
- 
-  }
+
+
+constructor(public modalCtrl: ModalController) { }
+
+
+
+  goTodir() {
+
+let modal = this.modalCtrl.create(DirectionPage);
+    modal.present();
+
+  }  
+
+
+
+
+
+
  
   ionViewDidEnter() {
     this.loadmap();

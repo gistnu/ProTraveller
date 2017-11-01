@@ -9,8 +9,6 @@ import { ProvdetailPage } from '../pages/provdetail/provdetail';
 import { MapviewPage } from '../pages/mapview/mapview';
 import { FaqPage } from '../pages/faq/faq';
 import { HowtoPage } from '../pages/howto/howto';
-import { HospitalPage } from '../pages/hospital/hospital';
-import { ViewlocatPage } from '../pages/viewlocat/viewlocat';
 
 @Component({
   templateUrl: 'app.html'

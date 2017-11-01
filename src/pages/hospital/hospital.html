@@ -7,6 +7,8 @@
     </ion-navbar>
 </ion-header>
 
+
+
 <ion-content>
 
   <ion-card>
@@ -21,16 +23,18 @@
 
   <ion-item-group>
     <ion-item-divider color="light">สถานพยาบาลในระยะ 5 กิโลเมตร</ion-item-divider>
-    <ion-item>
-      <h2>My Neighbor Totoro</h2>
-      <p>Hayao Miyazaki • 1988</p>
-      <button ion-button clear item-end>ค้นหาเส้นทาง</button>
-    </ion-item>
-    <ion-item>
-      <h2>My Neighbor Totoro</h2>
-      <p>Hayao Miyazaki • 1988</p>
-      <button ion-button clear item-end>ค้นหาเส้นทาง</button>
-    </ion-item>
+    <ion-list>
+        <ion-item>
+          <h2>โรงพยาบาลพุทธชินราช</h2>
+          <button ion-button clear item-end (click)="goTodir()">ค้นหาเส้นทาง</button>
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-item>
+          <h2>โรงพยาบาลพุทธชินราช</h2>
+          <button ion-button clear item-end (click)="goTodir()">ค้นหาเส้นทาง</button>
+        </ion-item>
+    </ion-list>
   </ion-item-group>
 
   <ion-item-group>

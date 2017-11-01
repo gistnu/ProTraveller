@@ -11,6 +11,7 @@ import { FaqPage } from '../pages/faq/faq';
 import { HowtoPage } from '../pages/howto/howto';
 import { HospitalPage } from '../pages/hospital/hospital';
 import { ViewlocatPage } from '../pages/viewlocat/viewlocat';
+import { DirectionPage } from '../pages/direction/direction';
 
 
 
@@ -29,7 +30,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     FaqPage,
     HowtoPage,
     HospitalPage,
-    ViewlocatPage
+    ViewlocatPage,
+    DirectionPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     FaqPage,
     HowtoPage,
     HospitalPage,
-    ViewlocatPage
+    ViewlocatPage,
+    DirectionPage
   ],
   providers: [
     StatusBar,
