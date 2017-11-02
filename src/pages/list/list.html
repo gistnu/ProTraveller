@@ -11,8 +11,8 @@
 
 
   
-  <ion-card ion-item *ngFor = "let c of courses">
-    <a (click)="goToDetail()">
+  <ion-card ion-item *ngFor = "let c of courses"  >
+    <a (click)="itemSelected(c)">
     <img src="../assets/{{c.img_prov}}">
 
     <ion-item>

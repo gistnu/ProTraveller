@@ -4,7 +4,6 @@ import { NavController } from 'ionic-angular';
 
 
 import { ListPage } from '../list/list';
-import { MapviewPage } from '../mapview/mapview';
 import { ProvdetailPage } from '../provdetail/provdetail';
 import { FaqPage } from '../faq/faq';
 import { HospitalPage } from '../hospital/hospital';
