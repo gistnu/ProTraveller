@@ -12,11 +12,16 @@ import { HowtoPage } from '../pages/howto/howto';
 import { HospitalPage } from '../pages/hospital/hospital';
 import { ViewlocatPage } from '../pages/viewlocat/viewlocat';
 import { DirectionPage } from '../pages/direction/direction';
+import { CoursePage } from '../pages/course/course';
 
 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { CourseServiceProvider } from '../providers/course-service/course-service';
+
+
+import { HttpModule } from '@angular/http';
 
 
 
@@ -31,10 +36,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HowtoPage,
     HospitalPage,
     ViewlocatPage,
-    DirectionPage
+    DirectionPage,
+    CoursePage
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -48,12 +55,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HowtoPage,
     HospitalPage,
     ViewlocatPage,
-    DirectionPage
+    DirectionPage,
+    CoursePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    CourseServiceProvider
   ]
 })
 export class AppModule {}

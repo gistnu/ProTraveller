@@ -9,6 +9,7 @@ import { ProvdetailPage } from '../pages/provdetail/provdetail';
 import { MapviewPage } from '../pages/mapview/mapview';
 import { FaqPage } from '../pages/faq/faq';
 import { HowtoPage } from '../pages/howto/howto';
+import { CoursePage } from '../pages/course/course';
 
 @Component({
   templateUrl: 'app.html'
@@ -30,7 +31,8 @@ export class MyApp {
       { title: 'ค้นหาสถานพยาบาล', component: ProvdetailPage },
       { title: 'ดูแผนที่', component: MapviewPage },
       { title: 'คำถามที่พบบ่อย', component: FaqPage },
-      { title: 'การป้องกัน', component: HowtoPage }
+      { title: 'การป้องกัน', component: HowtoPage },
+      { title: 'test', component: CoursePage }
     ];
 
   }

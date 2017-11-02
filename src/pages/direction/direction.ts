@@ -7,6 +7,7 @@ import { NavController ,ViewController} from 'ionic-angular';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+ declare var google;
 
 @IonicPage()
 @Component({
