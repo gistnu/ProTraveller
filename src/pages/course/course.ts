@@ -14,6 +14,8 @@ selector: 'page-course',
 templateUrl: 'course.html'
 })
 export class CoursePage {
+
+
 courses: Course[];
 sub:Subscription;
 errorMessage:string;
@@ -35,4 +37,6 @@ this.getCourses();
 ionViewWillLeave() {
 this.sub.unsubscribe();  
 }
+
+
 }
