@@ -10,7 +10,7 @@
 <ion-content >
 
       <ion-list >
-          <ion-item *ngFor="let c of items" (click)="goToMap()">
+          <ion-item *ngFor="let c of items" (click)="itemSelected(c)">
                 <ion-avatar item-start>
                   <img src="../assets/img_trav/{{c.img_place}}">
                 </ion-avatar>

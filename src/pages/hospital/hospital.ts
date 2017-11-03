@@ -1,8 +1,14 @@
+
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import leaflet from 'leaflet';
-import { ModalController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 
 import { DirectionPage } from '../direction/direction';
+import { CourseServiceProvider } from '../../providers/course-service/course-service';  
+import { Subscription } from 'rxjs/Subscription';  
+import { Item } from '../../models/item';
+
 
 @Component({
   selector: 'page-hospital',
@@ -13,26 +19,40 @@ export class HospitalPage {
 
 
 @ViewChild('map') mapContainer: ElementRef;
-  map: any;
+    map: any;
+    
+    //items: Item[];
+    items: any[];
+    sub: Subscription;
+    id_prov:number;
+
+    constructor(public modalCtrl: ModalController,
+                public navCtrl: NavController,
+                public navParams: NavParams,
+                private courseServiceProvider:CourseServiceProvider
+    ) {
+    this.id_prov = this.navParams.get('id_prov'); 
+    
+    }
+
+    
+
+  private getHospital() {
+    this.sub = this.courseServiceProvider.getHospital().subscribe(
+
+    (res) => this.items = res
+
+    );
+
+   
+  }
+  ionViewWillEnter() {
+    let t = this.getHospital();
+  }
 
 
-constructor(public modalCtrl: ModalController) { }
 
 
-
-  goTodir() {
-
-let modal = this.modalCtrl.create(DirectionPage);
-    modal.present();
-
-  }  
-
-
-
-
-
-
- 
   ionViewDidEnter() {
     this.loadmap();
   }
@@ -58,23 +78,46 @@ loadmap() {
       markerGroup.addLayer(marker);
       this.map.addLayer(markerGroup);
 
-       console.log(e.latitude,e.longitude);
-
+       
        leaflet.circle([e.latitude, e.longitude], {
           color: 'red',
           fillColor: '#f03',
-          fillOpacity: 0.5,
+          fillOpacity: 0.2,
           radius: 2000
         }).addTo(this.map);
+
+  
+console.log(e.latitude, e.longitude);
+
+        leaflet.tileLayer.wms("http://www.map.nu.ac.th/geoserver-hgis/wms?", {
+          layers: 'vmobile_admin:dpc9_health_center',
+          cql_filter: 'DWITHIN(geom,POINT('+e.longitude+' '+e.latitude+'),0.02,meters)',
+          format: 'image/png',
+          transparent: true,
+          attribution: '&copy; <a href="http://GISTNU.com">GISTNU</a>'
+      }).addTo(this.map);
+
 
       }).on('locationerror', (err) => {
         alert(err.message);
     })
 
+
+
        
 
   }
 
+
+  itemSelected(c):void {
+    let modal = this.modalCtrl.create(DirectionPage,{
+    id_hospital : c.id_hospital,
+    lat_place : c.lat_place,
+    lon_place : c.lon_place,
+  });
+    modal.present();
+  }  
  
 }
+
 

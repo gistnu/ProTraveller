@@ -18,6 +18,15 @@ import { Subscription } from 'rxjs/Subscription';
 
 
 export class ProvdetailPage {
+	itemSelected(c):void {
+	  this.navCtrl.push(MapviewPage,{
+			id_place : c.id_place,
+			lat : c.lat,
+			lon : c.lon
+		});
+	  }
+
+
 	items: Item[];
 	sub: Subscription;
 	id_prov:number;
@@ -30,9 +39,8 @@ export class ProvdetailPage {
 	
 	}
 
-  goToMap() {
-  this.navCtrl.push(MapviewPage);
-  }
+    
+
 
 
 	private getCourseDetail() {

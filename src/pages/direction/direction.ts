@@ -18,10 +18,17 @@ export class DirectionPage {
 
 		  
 
+	id_hospital:number;
+	lat_place:number;
+	lon_place:number;
+
+
 		@ViewChild('map') mapElement: ElementRef;
 		  map: any;
+
+
 		  start = '16.7547209,100.2004448';
-		  end = '16.808390,100.263315';
+		  end = '16.5747209,100.2034448';
 		  directionsService = new google.maps.DirectionsService;
 		  directionsDisplay = new google.maps.DirectionsRenderer;
 

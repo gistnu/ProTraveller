@@ -20,5 +20,18 @@ return this.http.get('http://www2.cgistln.nu.ac.th/app_gistnu/php/protraveller.p
 getCourseDetail(id_prov:number):Observable<Item[]> {
 return this.http.get('http://www2.cgistln.nu.ac.th/app_gistnu/php/select_prov.php?id_prov='+id_prov).map((res:Response) => <Item[]> res.json());
 }
+
+getProvDetail(id_place:number):Observable<Item[]> {
+return this.http.get('http://www2.cgistln.nu.ac.th/app_gistnu/php/select_place.php?id_place='+id_place)
+.map((res:Response) => <Item[]> res.json());
+}
+
+getHospital():Observable<Item[]> {
+return this.http
+.get('http://www.map.nu.ac.th/geoserver-hgis/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=vmobile_admin:dpc9_health_center&cql_filter=DWITHIN(geom,POINT(100.1954%2016.7454),0.02,%20meters)&outputFormat=application%2Fjson')
+.map((res:Response) => <Item[]> res.json());
+
+
+}
  
 }

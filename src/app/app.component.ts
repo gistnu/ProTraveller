@@ -4,12 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { ProvdetailPage } from '../pages/provdetail/provdetail';
-import { MapviewPage } from '../pages/mapview/mapview';
-import { FaqPage } from '../pages/faq/faq';
-import { HowtoPage } from '../pages/howto/howto';
-import { CoursePage } from '../pages/course/course';
 
 @Component({
   templateUrl: 'app.html'
@@ -26,13 +20,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'หน้าแรก', component: HomePage },
-      { title: 'ตรวจสอบพื้นที่', component: ListPage },
-      { title: 'ค้นหาสถานพยาบาล', component: ProvdetailPage },
-      { title: 'ดูแผนที่', component: MapviewPage },
-      { title: 'คำถามที่พบบ่อย', component: FaqPage },
-      { title: 'การป้องกัน', component: HowtoPage },
-      { title: 'test', component: CoursePage }
+      { title: 'หน้าแรก', component: HomePage }
     ];
 
   }

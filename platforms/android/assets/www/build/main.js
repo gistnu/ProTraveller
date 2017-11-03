@@ -1,13 +1,14 @@
 webpackJsonp([2],{
 
-/***/ 100:
+/***/ 101:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__provdetail_provdetail__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__provdetail_provdetail__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_course_service_course_service__ = __webpack_require__(48);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20,34 +21,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ListPage = (function () {
-    function ListPage(navCtrl) {
+    function ListPage(navCtrl, navParams, courseServiceProvider) {
         this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.courseServiceProvider = courseServiceProvider;
     }
-    ListPage.prototype.goToDetail = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__provdetail_provdetail__["a" /* ProvdetailPage */]);
+    ListPage.prototype.itemSelected = function (c) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__provdetail_provdetail__["a" /* ProvdetailPage */], {
+            id_prov: c.id_prov
+        });
+    };
+    ListPage.prototype.getCourses = function () {
+        var _this = this;
+        this.sub = this.courseServiceProvider.getCourse().subscribe(function (res) { return _this.courses = res; }, function (error) { return _this.errorMessage = error; });
+    };
+    ListPage.prototype.ionViewWillEnter = function () {
+        this.getCourses();
+    };
+    ListPage.prototype.ionViewWillLeave = function () {
+        this.sub.unsubscribe();
     };
     return ListPage;
 }());
 ListPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-list',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/list/list.html"*/'\n<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n\n    </ion-navbar>\n      \n</ion-header>\n\n<ion-content>\n\n\n  <a (click)="goToDetail()">\n  <ion-card>\n    <img src="../assets/prov1.jpg">\n\n    <ion-item>\n      <ion-icon name="pin" item-start large></ion-icon>\n      <h2>พิษณุโลก</h2>\n      <p>พระพุทธชินราชงามเลิศ ถิ่นกำเนิดพระนเรศวร สองฝั่งน่านล้วนเรือนแพ หวานฉ่ำแท้กล้วยตาก ถ้ำและน้ำตกหลากตระการตา</p>\n    </ion-item>\n\n    <ion-item>\n      <span item-left>7 สถานที่แนะนำ</span>\n      <button ion-button icon-left clear item-end>\n        <ion-icon name="navigate"></ion-icon>\n        Start\n      </button>\n    </ion-item>\n  </ion-card>\n  </a>\n\n\n  <ion-card>\n        <img src="../assets/prov2.jpg">\n\n    <ion-item>\n      <ion-icon name="pin" item-start large></ion-icon>\n      <h2>อุตรดิตถ์</h2>\n      <p>เหล็กน้ำพี้ลือเลื่อง เมืองลางสาดหวาน บ้านพระยาพิชัยดาบหัก ถิ่นสักใหญ่ของโลก</p>\n    </ion-item>\n\n    <ion-item>\n      <span item-left>11 สถานที่แนะนำ</span>\n      <button ion-button icon-left clear item-end>\n        <ion-icon name="navigate"></ion-icon>\n        Start\n      </button>\n    </ion-item>\n  </ion-card>\n  \n  <ion-card>\n        <img src="../assets/prov3.png">\n\n    <ion-item>\n      <ion-icon name="pin" item-start large></ion-icon>\n      <h2>สุโขทัย</h2>\n      <p>มรดกโลกล้ำเลิศ กำเนิดลายสือไทย เล่นไฟลอยกระทง ดำรงพุทธศาสนา งามตาผ้าตีนจก สังคโลกทองโบราณ สักการแม่ย่าพ่อขุน รุ่งอรุณแห่งความสุข</p>\n    </ion-item>\n\n    <ion-item>\n      <span item-left>21 สถานที่แนะนำ</span>\n      <button ion-button icon-left clear item-end>\n        <ion-icon name="navigate"></ion-icon>\n        Start\n      </button>\n    </ion-item>\n  </ion-card>\n  \n  <ion-card>\n        <img src="../assets/prov4.jpg">\n\n    <ion-item>\n      <ion-icon name="pin" item-start large></ion-icon>\n      <h2>เพชรบูรณ์</h2>\n      <p>เมืองมะขามหวาน อุทยานน้ำหนาว ศรีเทพเมืองเก่า เขาค้ออนุสรณ์ นครพ่อขุนผาเมือง</p>\n    </ion-item>\n\n    <ion-item>\n      <span item-left>18 สถานที่แนะนำ</span>\n      <button ion-button icon-left clear item-end>\n        <ion-icon name="navigate"></ion-icon>\n        Start\n      </button>\n    </ion-item>\n  </ion-card>\n  \n  <ion-card>\n        <img src="../assets/prov5.jpg">\n\n    <ion-item>\n      <ion-icon name="pin" item-start large></ion-icon>\n      <h2>ตาก</h2>\n      <p>ธรรมชาติน่ายล ภูมิพลเขื่อนใหญ่ พระเจ้าตากเกรียงไกร เมืองไม้และป่างาม</p>\n    </ion-item>\n\n    <ion-item>\n      <span item-left>16 สถานที่แนะนำ</span>\n      <button ion-button icon-left clear item-end>\n        <ion-icon name="navigate"></ion-icon>\n        Start\n      </button>\n    </ion-item>\n  </ion-card>\n\n\n\n\n</ion-content>\n'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/list/list.html"*/
+        selector: 'page-list',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/list/list.html"*/'<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n\n\n  \n  <ion-card ion-item *ngFor = "let c of courses"  >\n    <a (click)="itemSelected(c)">\n    <img src="../assets/{{c.img_prov}}">\n\n    <ion-item>\n      <ion-icon name="pin" item-start large></ion-icon>\n      <h2>{{c.name_prov}}</h2>\n      <p>{{c.detail_prov}}</p>\n    </ion-item>\n\n    <ion-item>\n      <span item-left>7 สถานที่แนะนำ</span>\n      <button ion-button icon-left clear item-end>\n        <ion-icon name="navigate"></ion-icon>\n        Start\n      </button>\n    </ion-item>\n    </a>\n  </ion-card>\n  \n\n</ion-content>\n'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/list/list.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_course_service_course_service__["a" /* CourseServiceProvider */]])
 ], ListPage);
 
 //# sourceMappingURL=list.js.map
 
 /***/ }),
 
-/***/ 101:
+/***/ 102:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapviewPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__howto_howto__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_leaflet__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__howto_howto__ = __webpack_require__(104);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -57,6 +77,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -64,14 +85,49 @@ var MapviewPage = (function () {
     function MapviewPage(navCtrl) {
         this.navCtrl = navCtrl;
     }
+    MapviewPage.prototype.ionViewDidEnter = function () {
+        this.loadmap();
+    };
+    MapviewPage.prototype.loadmap = function () {
+        var _this = this;
+        this.map = __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.map("map").fitWorld();
+        __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attributions: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+            maxZoom: 16
+        }).addTo(this.map);
+        this.map.locate({
+            setView: true,
+            maxZoom: 16
+        }).on('locationfound', function (e) {
+            var markerGroup = __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.featureGroup();
+            var marker = __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.marker([e.latitude, e.longitude]).on('click', function () {
+                alert('Marker clicked');
+            });
+            markerGroup.addLayer(marker);
+            _this.map.addLayer(markerGroup);
+            console.log(e.latitude, e.longitude);
+        }).on('locationerror', function (err) {
+            alert(err.message);
+        });
+        __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver/apr/wms?", {
+            layers: 'apr:forking',
+            format: 'image/png',
+            transparent: true,
+            attribution: '&copy; <a href="http://GISTNU.com">GISTNU</a>'
+        }).addTo(this.map);
+    };
     MapviewPage.prototype.goToHowto = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__howto_howto__["a" /* HowtoPage */]);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__howto_howto__["a" /* HowtoPage */]);
     };
     return MapviewPage;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* ViewChild */])('map'),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */])
+], MapviewPage.prototype, "mapContainer", void 0);
 MapviewPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-mapview',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/mapview/mapview.html"*/'\n<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n\n\n<ion-content>\n  <ion-card>\n\n   <img src="../assets/getlocation.png">\n\n  <ion-fab right top>\n    <button ion-fab>\n      <ion-icon name="pin"></ion-icon>\n    </button>\n  </ion-fab>\n\n  <ion-item>\n    <ion-icon name="pin" item-start large></ion-icon>\n      <h2>วัดจุฬามณี</h2>\n      <p>ที่ตั้ง : 23/2 ซอยจุฬามณี ซอย 3 ตำบล ท่าทอง อำเภอเมืองพิษณุโลก พิษณุโลก 65000</p>\n  </ion-item>\n\n  <ion-item>\n    <ion-icon name="flash" item-left large ></ion-icon>\n    <h2>พบการเกิดโรคในระยะใกล้เคียง </h2>\n    \n  </ion-item>\n\n  <ion-item>\n\n  \n\n\n  <table class="table">\n                    <tbody>\n\n                        <tr class="table-row">\n                            <td class="table-img">\n                               <img src="images/in.jpg" alt="" />\n                            </td>\n                            <td class="table-text">\n                              <h6>หมู่บ้าน บ้านกอก</h6>\n                                \n                            </td>\n                            <td>\n                              <p>พบผู้ป่วย 1 ราย</p>\n                            </td>\n                        </tr>\n\n                        <tr class="table-row">\n                            <td class="table-img">\n                               <img src="images/in.jpg" alt="" />\n                            </td>\n                            <td class="table-text">\n                              <h6>หมู่บ้าน ท่าทองตะวันตก</h6>\n                                \n                            </td>\n                            <td>\n                              <p>พบผู้ป่วย 1 ราย</p>\n                            </td>\n                        </tr>\n\n                        <tr class="table-row">\n                            <td class="table-img">\n                               <img src="images/in.jpg" alt="" />\n                            </td>\n                            <td class="table-text">\n                              <h6>หมู่บ้าน หนองหัวยางเหนือ</h6>\n                                \n                            </td>\n                            <td>\n                              <p>พบผู้ป่วย 1 ราย</p>\n                            </td>\n                        </tr>\n\n\n                    </tbody>\n                </table>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <span item-left>\n\n        <button ion-button icon-left clear item-end (click)="goToHowto()">\n          <ion-icon name="navigate"></ion-icon>\n          แนวทางป้องกัน\n        </button>\n      \n    </span>\n\n    <button ion-button icon-left clear item-end>\n      <ion-icon name="navigate"></ion-icon>\n      ค้นหาเส้นทางมาที่นี่\n    </button>\n\n  </ion-item>\n\n</ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/mapview/mapview.html"*/
+        selector: 'page-mapview',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/mapview/mapview.html"*/'\n<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n\n\n<ion-content>\n  <ion-card>\n\n  <div id="map" style="width:100%; height:100%;"></div>\n\n  <ion-fab right top>\n    <button ion-fab>\n      <ion-icon name="pin"></ion-icon>\n    </button>\n  </ion-fab>\n\n  <ion-item>\n    <ion-icon name="pin" item-start large></ion-icon>\n      <h2>วัดจุฬามณี</h2>\n      <p>ที่ตั้ง : 23/2 ซอยจุฬามณี ซอย 3 ตำบล ท่าทอง อำเภอเมืองพิษณุโลก พิษณุโลก 65000</p>\n  </ion-item>\n\n  <ion-item>\n    <ion-icon name="flash" item-left large ></ion-icon>\n    <h2>พบการเกิดโรคในระยะใกล้เคียง </h2>\n    \n  </ion-item>\n\n  <ion-item>\n\n  \n\n\n  <table class="table">\n                    <tbody>\n\n                        <tr class="table-row">\n                            <td class="table-img">\n                               <img src="images/in.jpg" alt="" />\n                            </td>\n                            <td class="table-text">\n                              <h6>หมู่บ้าน บ้านกอก</h6>\n                                \n                            </td>\n                            <td>\n                              <p>พบผู้ป่วย 1 ราย</p>\n                            </td>\n                        </tr>\n\n                        <tr class="table-row">\n                            <td class="table-img">\n                               <img src="images/in.jpg" alt="" />\n                            </td>\n                            <td class="table-text">\n                              <h6>หมู่บ้าน ท่าทองตะวันตก</h6>\n                                \n                            </td>\n                            <td>\n                              <p>พบผู้ป่วย 1 ราย</p>\n                            </td>\n                        </tr>\n\n                        <tr class="table-row">\n                            <td class="table-img">\n                               <img src="images/in.jpg" alt="" />\n                            </td>\n                            <td class="table-text">\n                              <h6>หมู่บ้าน หนองหัวยางเหนือ</h6>\n                                \n                            </td>\n                            <td>\n                              <p>พบผู้ป่วย 1 ราย</p>\n                            </td>\n                        </tr>\n\n\n                    </tbody>\n                </table>\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <span item-left>\n\n        <button ion-button icon-left clear item-end (click)="goToHowto()">\n          <ion-icon name="navigate"></ion-icon>\n          แนวทางป้องกัน\n        </button>\n      \n    </span>\n\n    <button ion-button icon-left clear item-end>\n      <ion-icon name="navigate"></ion-icon>\n      ค้นหาเส้นทางมาที่นี่\n    </button>\n\n  </ion-item>\n\n</ion-card>\n\n</ion-content>\n'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/mapview/mapview.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
 ], MapviewPage);
@@ -80,7 +136,7 @@ MapviewPage = __decorate([
 
 /***/ }),
 
-/***/ 102:
+/***/ 104:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -115,7 +171,7 @@ HowtoPage = __decorate([
 
 /***/ }),
 
-/***/ 103:
+/***/ 105:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -150,14 +206,14 @@ FaqPage = __decorate([
 
 /***/ }),
 
-/***/ 104:
+/***/ 106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CoursePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_course_service_course_service__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_course_service_course_service__ = __webpack_require__(48);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -201,7 +257,7 @@ CoursePage = __decorate([
 
 /***/ }),
 
-/***/ 105:
+/***/ 107:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -272,7 +328,7 @@ DirectionPage = __decorate([
 
 /***/ }),
 
-/***/ 114:
+/***/ 116:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -285,11 +341,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 114;
+webpackEmptyAsyncContext.id = 116;
 
 /***/ }),
 
-/***/ 156:
+/***/ 158:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -313,67 +369,22 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 156;
+webpackAsyncContext.id = 158;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 157:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CourseServiceProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(158);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(249);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(250);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_throw__ = __webpack_require__(252);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_throw__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var CourseServiceProvider = (function () {
-    function CourseServiceProvider(http) {
-        this.http = http;
-    }
-    CourseServiceProvider.prototype.getCourse = function () {
-        return this.http.get('http://www2.cgistln.nu.ac.th/app_gistnu/php/protraveller.php').map(function (res) { return res.json(); });
-    };
-    return CourseServiceProvider;
-}());
-CourseServiceProvider = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
-], CourseServiceProvider);
-
-//# sourceMappingURL=course-service.js.map
-
-/***/ }),
-
-/***/ 203:
+/***/ 204:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__list_list__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__provdetail_provdetail__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__faq_faq__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__hospital_hospital__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__list_list__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__provdetail_provdetail__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__faq_faq__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__hospital_hospital__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__viewlocat_viewlocat__ = __webpack_require__(206);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -423,16 +434,16 @@ HomePage = __decorate([
 
 /***/ }),
 
-/***/ 204:
+/***/ 205:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HospitalPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_leaflet__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__direction_direction__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__direction_direction__ = __webpack_require__(107);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -509,7 +520,7 @@ HospitalPage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewlocatPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_leaflet___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_leaflet__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -598,20 +609,20 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(271);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_provdetail_provdetail__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_mapview_mapview__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_faq_faq__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_howto_howto__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_hospital_hospital__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_provdetail_provdetail__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_mapview_mapview__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_faq_faq__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_howto_howto__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_hospital_hospital__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_viewlocat_viewlocat__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_direction_direction__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_course_course__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_status_bar__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_splash_screen__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_course_service_course_service__ = __webpack_require__(157);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__angular_http__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_direction_direction__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_course_course__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_status_bar__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_splash_screen__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__providers_course_service_course_service__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__angular_http__ = __webpack_require__(159);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -700,15 +711,15 @@ AppModule = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_provdetail_provdetail__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_mapview_mapview__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_faq_faq__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_howto_howto__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_course_course__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_provdetail_provdetail__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_mapview_mapview__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_faq_faq__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_howto_howto__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_course_course__ = __webpack_require__(106);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -777,14 +788,19 @@ MyApp = __decorate([
 
 /***/ }),
 
-/***/ 52:
+/***/ 48:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProvdetailPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CourseServiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mapview_mapview__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_throw__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_observable_throw__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -797,20 +813,77 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+var CourseServiceProvider = (function () {
+    function CourseServiceProvider(http) {
+        this.http = http;
+    }
+    CourseServiceProvider.prototype.getCourse = function () {
+        return this.http.get('http://www2.cgistln.nu.ac.th/app_gistnu/php/protraveller.php').map(function (res) { return res.json(); });
+    };
+    CourseServiceProvider.prototype.getCourseDetail = function (id_prov) {
+        return this.http.get('http://www2.cgistln.nu.ac.th/app_gistnu/php/select_prov.php?id_prov=' + id_prov).map(function (res) { return res.json(); });
+    };
+    return CourseServiceProvider;
+}());
+CourseServiceProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
+], CourseServiceProvider);
+
+//# sourceMappingURL=course-service.js.map
+
+/***/ }),
+
+/***/ 53:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProvdetailPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_course_service_course_service__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mapview_mapview__ = __webpack_require__(102);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
 var ProvdetailPage = (function () {
-    function ProvdetailPage(navCtrl) {
+    function ProvdetailPage(navCtrl, navParams, courseServiceProvider) {
         this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.courseServiceProvider = courseServiceProvider;
+        this.id_prov = this.navParams.get('id_prov');
     }
     ProvdetailPage.prototype.goToMap = function () {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__mapview_mapview__["a" /* MapviewPage */]);
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__mapview_mapview__["a" /* MapviewPage */]);
+    };
+    ProvdetailPage.prototype.getCourseDetail = function () {
+        var _this = this;
+        this.sub = this.courseServiceProvider.getCourseDetail(this.id_prov).subscribe(function (res) { return _this.items = res; });
+    };
+    ProvdetailPage.prototype.ionViewWillEnter = function () {
+        this.getCourseDetail();
     };
     return ProvdetailPage;
 }());
 ProvdetailPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-provdetail',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/provdetail/provdetail.html"*/'\n<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content >\n\n  <ion-list>\n    <a (click)="goToMap()">\n      <ion-item>\n        <ion-thumbnail item-start>\n            <img src="../assets/img_trav/trav1.jpg">\n        </ion-thumbnail>\n        <h2>วัดพระศรีรัตนมหาธาตุวรมหาวิหาร</h2>\n        <p>ที่ตั้ง : ตำบลในเมือง อำเภอเมืองพิษณุโลก จังหวัดพิษณุโลก</p>\n        <button ion-button clear item-end>View</button>\n      </ion-item>\n    </a>\n\n    <ion-item>\n      <ion-thumbnail item-start>\n          <img src="../assets/img_trav/trav2.jpg">\n      </ion-thumbnail>\n      <h2>อุทยานแห่งชาติน้ำตกชาติตระการ</h2>\n      <p>เขตพื้นที่อำเภอชาติตระการ และอำเภอนครไทย จังหวัดพิษณุโลก</p>\n      <button ion-button clear item-end>View</button>\n    </ion-item>\n    <ion-item>\n      <ion-thumbnail item-start>\n          <img src="../assets/img_trav/trav3.jpg">\n      </ion-thumbnail>\n      <h2>โครงการพัฒนาป่าไม้ตามแนวพระราชดำริภูหินร่องกล้า</h2>\n      <p>เขตพื้นที่อุทยานแห่งชาติภูหินร่องกล้า จังหวัดพิษณุโลก</p>\n      <button ion-button clear item-end>View</button>\n    </ion-item>\n    <ion-item>\n      <ion-thumbnail item-start>\n          <img src="../assets/img_trav/trav4.jpg">\n      </ion-thumbnail>\n      <h2>พิพิธภัณฑ์พื้นบ้านจ่าทวี</h2>\n      <p>ตำบลในเมืองอำเภอเมืองพิษณุโลก จังหวัดพิษณุโลก</p>\n      <button ion-button clear item-end>View</button>\n    </ion-item>\n    <ion-item>\n      <ion-thumbnail item-start>\n          <img src="../assets/img_trav/trav5.jpg">\n      </ion-thumbnail>\n      <h2>วัดจุฬามณี</h2>\n      <p>อำเภอเมืองพิษณุโลก จังหวัดพิษณุโลก</p>\n      <button ion-button clear item-end>View</button>\n    </ion-item>\n    <ion-item>\n      <ion-thumbnail item-start>\n          <img src="../assets/img_trav/trav6.jpg">\n      </ion-thumbnail>\n      <h2>พระราชวังจันทร์</h2>\n      <p>ตำบลในเมือง อำเภอเมืองพิษณุโลก จังหวัดพิษณุโลก</p>\n      <button ion-button clear item-end>View</button>\n    </ion-item>\n    <ion-item>\n      <ion-thumbnail item-start>\n          <img src="../assets/img_trav/trav7.jpg">\n      </ion-thumbnail>\n      <h2>อุทยานแห่งชาติภูหินร่องกล้า</h2>\n      <p>เขตพื้นที่อำเภอด่านซ้าย จังหวัดเลย อำเภอนครไทย จังหวัดพิษณุโลก และอำเภอหล่มสัก จังหวัดเพชรบูรณ์</p>\n      <button ion-button clear item-end>View</button>\n    </ion-item>\n</ion-list>\n\n\n</ion-content>\n'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/provdetail/provdetail.html"*/
+        selector: 'page-provdetail',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/provdetail/provdetail.html"*/'\n<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content >\n\n      <ion-list >\n          <ion-item *ngFor="let c of items" (click)="goToMap()">\n                <ion-avatar item-start>\n                  <img src="../assets/img_trav/{{c.img_place}}">\n                </ion-avatar>\n                  <h2>{{c.name_place}}</h2>\n                  <p>ที่ตั้ง : {{c.addre_place}}</p>\n          </ion-item>\n      </ion-list>\n         \n</ion-content>\n'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/provdetail/provdetail.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_course_service_course_service__["a" /* CourseServiceProvider */]])
 ], ProvdetailPage);
 
 //# sourceMappingURL=provdetail.js.map
