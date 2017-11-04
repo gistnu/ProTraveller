@@ -22,15 +22,15 @@
 	  </ion-fab>
 
   <ion-item-group  >
-    <ion-item-divider color="light">สถานพยาบาลในระยะ 5 กิโลเมตร</ion-item-divider>
+    <ion-item-divider color="light">สถานพยาบาลในระยะ 2 กิโลเมตร</ion-item-divider>
 
 
 
-    <!-- <ion-list ion-item *ngFor = "let c of items" > -->
-      <ion-list> 
+    
+      <ion-list ion-item *ngFor = "let c of items" >
 
         <ion-item>
-          <h2>{{items}}</h2>
+          <h2>{{c.features}}</h2>
           <button ion-button clear item-end (click)="itemSelected(c)">ค้นหาเส้นทาง</button>
         </ion-item>
     </ion-list>

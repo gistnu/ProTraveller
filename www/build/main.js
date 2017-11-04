@@ -480,10 +480,10 @@ var HospitalPage = (function () {
     }
     HospitalPage.prototype.getHospital = function () {
         var _this = this;
-        this.sub = this.courseServiceProvider.getHospital().subscribe(function (res) { return _this.items = res; });
+        this.courseServiceProvider.getHospital().subscribe(function (res) { return _this.items = res; });
     };
     HospitalPage.prototype.ionViewWillEnter = function () {
-        var t = this.getHospital();
+        this.getHospital();
     };
     HospitalPage.prototype.ionViewDidEnter = function () {
         this.loadmap();
@@ -539,7 +539,7 @@ __decorate([
 ], HospitalPage.prototype, "mapContainer", void 0);
 HospitalPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-hospital',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/hospital/hospital.html"*/'\n<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n\n<ion-content>\n\n  <ion-card>\n\n      <div id="map" style="width:100%; height:100%;"></div>\n\n      <ion-fab right top>\n	    <button ion-fab>\n	      <ion-icon name="pin"></ion-icon>\n	    </button>\n	  </ion-fab>\n\n  <ion-item-group  >\n    <ion-item-divider color="light">สถานพยาบาลในระยะ 5 กิโลเมตร</ion-item-divider>\n\n\n\n    <!-- <ion-list ion-item *ngFor = "let c of items" > -->\n      <ion-list> \n\n        <ion-item>\n          <h2>{{items}}</h2>\n          <button ion-button clear item-end (click)="itemSelected(c)">ค้นหาเส้นทาง</button>\n        </ion-item>\n    </ion-list>\n\n  </ion-item-group>\n\n\n  </ion-card>\n \n</ion-content>'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/hospital/hospital.html"*/
+        selector: 'page-hospital',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/hospital/hospital.html"*/'\n<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n\n<ion-content>\n\n  <ion-card>\n\n      <div id="map" style="width:100%; height:100%;"></div>\n\n      <ion-fab right top>\n	    <button ion-fab>\n	      <ion-icon name="pin"></ion-icon>\n	    </button>\n	  </ion-fab>\n\n  <ion-item-group  >\n    <ion-item-divider color="light">สถานพยาบาลในระยะ 2 กิโลเมตร</ion-item-divider>\n\n\n\n    \n      <ion-list ion-item *ngFor = "let c of items" >\n\n        <ion-item>\n          <h2>{{c.features}}</h2>\n          <button ion-button clear item-end (click)="itemSelected(c)">ค้นหาเส้นทาง</button>\n        </ion-item>\n    </ion-list>\n\n  </ion-item-group>\n\n\n  </ion-card>\n \n</ion-content>'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/hospital/hospital.html"*/
     }),
     __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* ModalController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_course_service_course_service__["a" /* CourseServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_course_service_course_service__["a" /* CourseServiceProvider */]) === "function" && _e || Object])
 ], HospitalPage);
@@ -899,9 +899,7 @@ var CourseServiceProvider = (function () {
             .map(function (res) { return res.json(); });
     };
     CourseServiceProvider.prototype.getHospital = function () {
-        return this.http
-            .get('http://www.map.nu.ac.th/geoserver-hgis/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=vmobile_admin:dpc9_health_center&cql_filter=DWITHIN(geom,POINT(100.1954%2016.7454),0.02,%20meters)&outputFormat=application%2Fjson')
-            .map(function (res) { return res.json(); });
+        return this.http.get('http://www2.cgistln.nu.ac.th/app_gistnu/php/view_hospital.php').map(function (res) { return res.json(); });
     };
     return CourseServiceProvider;
 }());

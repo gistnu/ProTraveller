@@ -27,9 +27,7 @@ return this.http.get('http://www2.cgistln.nu.ac.th/app_gistnu/php/select_place.p
 }
 
 getHospital():Observable<Item[]> {
-return this.http
-.get('http://www.map.nu.ac.th/geoserver-hgis/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=vmobile_admin:dpc9_health_center&cql_filter=DWITHIN(geom,POINT(100.1954%2016.7454),0.02,%20meters)&outputFormat=application%2Fjson')
-.map((res:Response) => <Item[]> res.json());
+return this.http.get('http://www2.cgistln.nu.ac.th/app_gistnu/php/view_hospital.php').map((res:Response) => <Item[]> res.json());
 
 
 }

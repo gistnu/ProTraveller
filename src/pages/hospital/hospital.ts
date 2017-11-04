@@ -21,8 +21,7 @@ export class HospitalPage {
 @ViewChild('map') mapContainer: ElementRef;
     map: any;
     
-    //items: Item[];
-    items: any[];
+    items: Item[];
     sub: Subscription;
     id_prov:number;
 
@@ -38,16 +37,17 @@ export class HospitalPage {
     
 
   private getHospital() {
-    this.sub = this.courseServiceProvider.getHospital().subscribe(
+    this.courseServiceProvider.getHospital().subscribe(
 
     (res) => this.items = res
 
     );
 
-   
   }
+
+  
   ionViewWillEnter() {
-    let t = this.getHospital();
+    this.getHospital();
   }
 
 
