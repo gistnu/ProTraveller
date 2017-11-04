@@ -27,7 +27,8 @@ return this.http.get('http://www2.cgistln.nu.ac.th/app_gistnu/php/select_place.p
 }
 
 getHospital():Observable<Item[]> {
-return this.http.get('http://www2.cgistln.nu.ac.th/app_gistnu/php/view_hospital.php').map((res:Response) => <Item[]> res.json());
+return this.http.get('http://www2.cgistln.nu.ac.th/app_gistnu/php/select_hospital.php')
+.map((res:Response) => <Item[]> res.json());
 
 
 }

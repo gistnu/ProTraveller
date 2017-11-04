@@ -109,14 +109,15 @@ console.log(e.latitude, e.longitude);
   }
 
 
-  itemSelected(c):void {
-    let modal = this.modalCtrl.create(DirectionPage,{
-    id_hospital : c.id_hospital,
-    lat_place : c.lat_place,
-    lon_place : c.lon_place,
-  });
-    modal.present();
-  }  
+    itemSelected(c):void {
+        let modal = this.modalCtrl.create(DirectionPage,{
+        id_hospital : c.id_hospital,
+        lat_place : c.lat_place,
+        lon_place : c.lon_place,
+        lat_lon : c.lat_place+','+c.lon_place,
+        });
+        modal.present();
+    }  
  
 }
 

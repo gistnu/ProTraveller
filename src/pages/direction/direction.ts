@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
-import { NavController ,ViewController} from 'ionic-angular';
+import { NavController ,ViewController, NavParams} from 'ionic-angular';
 /**
  * Generated class for the DirectionPage page.
  *
@@ -16,19 +16,27 @@ import { NavController ,ViewController} from 'ionic-angular';
 })
 export class DirectionPage {
 
-		  
-
-	id_hospital:number;
-	lat_place:number;
-	lon_place:number;
-
 
 		@ViewChild('map') mapElement: ElementRef;
-		  map: any;
+		  map: any;	
+		  id_hospital:number;
+		lat_place:number;
+		lon_place:number;
+		lat_lon:number;
 
+  		constructor(public navCtrl: NavController ,
+						public navParams: NavParams,
+						public viewCtrl: ViewController) {
+		  	this.id_hospital = this.navParams.get('id_hospital'); 
+		  	this.lat_place = this.navParams.get('lat_place'); 
+		  	this.lon_place = this.navParams.get('lon_place'); 
+		  	this.lat_lon = this.navParams.get('lat_lon'); 
+		  	console.log(this.lat_lon);
+		  	
+		  }
 
 		  start = '16.7547209,100.2004448';
-		  end = '16.5747209,100.2034448';
+		  end = this.lat_lon;
 		  directionsService = new google.maps.DirectionsService;
 		  directionsDisplay = new google.maps.DirectionsRenderer;
 
@@ -49,7 +57,7 @@ export class DirectionPage {
 
 		    this.directionsService.route({
 		      origin: this.start,
-		      destination: this.end,
+		      destination: this.lat_lon,
 		      travelMode: 'DRIVING'
 		    }, (response, status) => {
 		      if (status === 'OK') {
@@ -60,7 +68,7 @@ export class DirectionPage {
 		    });
 		  }
 
-		  constructor(public navCtrl: NavController ,public viewCtrl: ViewController) {}
+
 		dismiss() {
 			this.viewCtrl.dismiss();
 		}

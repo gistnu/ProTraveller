@@ -77,13 +77,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var DirectionPage = (function () {
-    function DirectionPage(navCtrl, viewCtrl) {
+    function DirectionPage(navCtrl, navParams, viewCtrl) {
         this.navCtrl = navCtrl;
+        this.navParams = navParams;
         this.viewCtrl = viewCtrl;
         this.start = '16.7547209,100.2004448';
-        this.end = '16.5747209,100.2034448';
+        this.end = this.lat_lon;
         this.directionsService = new google.maps.DirectionsService;
         this.directionsDisplay = new google.maps.DirectionsRenderer;
+        this.id_hospital = this.navParams.get('id_hospital');
+        this.lat_place = this.navParams.get('lat_place');
+        this.lon_place = this.navParams.get('lon_place');
+        this.lat_lon = this.navParams.get('lat_lon');
+        console.log(this.lat_lon);
     }
     DirectionPage.prototype.ionViewDidLoad = function () {
         this.initMap();
@@ -98,7 +104,7 @@ var DirectionPage = (function () {
         this.directionsDisplay.setPanel(document.getElementById('right-panel'));
         this.directionsService.route({
             origin: this.start,
-            destination: this.end,
+            destination: this.lat_lon,
             travelMode: 'DRIVING'
         }, function (response, status) {
             if (status === 'OK') {
@@ -116,15 +122,16 @@ var DirectionPage = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* ViewChild */])('map'),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */])
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */]) === "function" && _a || Object)
 ], DirectionPage.prototype, "mapElement", void 0);
 DirectionPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-direction',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/direction/direction.html"*/'\n<ion-header>\n  <ion-toolbar>\n   <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    <ion-buttons start>\n      <button ion-button (click)="dismiss()">\n        <span ion-text color="primary" showWhen="ios">Cancel</span>\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content>\n    <div #map id="map"></div>\n     <ion-list id="right-panel">\n    </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/direction/direction.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ViewController */]])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ViewController */]) === "function" && _d || Object])
 ], DirectionPage);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=direction.js.map
 
 /***/ }),
@@ -528,6 +535,7 @@ var HospitalPage = (function () {
             id_hospital: c.id_hospital,
             lat_place: c.lat_place,
             lon_place: c.lon_place,
+            lat_lon: c.lat_place + ',' + c.lon_place,
         });
         modal.present();
     };
@@ -539,7 +547,7 @@ __decorate([
 ], HospitalPage.prototype, "mapContainer", void 0);
 HospitalPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-hospital',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/hospital/hospital.html"*/'\n<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n\n<ion-content>\n\n  <ion-card>\n\n      <div id="map" style="width:100%; height:100%;"></div>\n\n      <ion-fab right top>\n	    <button ion-fab>\n	      <ion-icon name="pin"></ion-icon>\n	    </button>\n	  </ion-fab>\n\n  <ion-item-group  >\n    <ion-item-divider color="light">สถานพยาบาลในระยะ 2 กิโลเมตร</ion-item-divider>\n\n\n\n    \n      <ion-list ion-item *ngFor = "let c of items" >\n\n        <ion-item>\n          <h2>{{c.features}}</h2>\n          <button ion-button clear item-end (click)="itemSelected(c)">ค้นหาเส้นทาง</button>\n        </ion-item>\n    </ion-list>\n\n  </ion-item-group>\n\n\n  </ion-card>\n \n</ion-content>'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/hospital/hospital.html"*/
+        selector: 'page-hospital',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/hospital/hospital.html"*/'\n<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n\n<ion-content>\n\n  <ion-card>\n\n      <div id="map" style="width:100%; height:100%;"></div>\n\n      <ion-fab right top>\n	    <button ion-fab>\n	      <ion-icon name="pin"></ion-icon>\n	    </button>\n	  </ion-fab>\n\n  <ion-item-group  >\n    <ion-item-divider color="light">สถานพยาบาลในระยะ 2 กิโลเมตร</ion-item-divider>\n\n\n\n    \n      <ion-list ion-item *ngFor = "let c of items" >\n\n        <ion-item>\n          <h2>{{c.name_place}}</h2>\n          <button ion-button clear item-end (click)="itemSelected(c)">ค้นหาเส้นทาง</button>\n        </ion-item>\n    </ion-list>\n\n  </ion-item-group>\n\n\n  </ion-card>\n \n</ion-content>'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/hospital/hospital.html"*/
     }),
     __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* ModalController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_course_service_course_service__["a" /* CourseServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_course_service_course_service__["a" /* CourseServiceProvider */]) === "function" && _e || Object])
 ], HospitalPage);
@@ -899,7 +907,8 @@ var CourseServiceProvider = (function () {
             .map(function (res) { return res.json(); });
     };
     CourseServiceProvider.prototype.getHospital = function () {
-        return this.http.get('http://www2.cgistln.nu.ac.th/app_gistnu/php/view_hospital.php').map(function (res) { return res.json(); });
+        return this.http.get('http://www2.cgistln.nu.ac.th/app_gistnu/php/select_hospital.php')
+            .map(function (res) { return res.json(); });
     };
     return CourseServiceProvider;
 }());
