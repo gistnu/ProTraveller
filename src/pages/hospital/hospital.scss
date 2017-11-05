@@ -1,5 +1,4 @@
 page-hospital {
-
     @font-face {
         font-family: 'Kanit';
         src: url('../assets/fonts/Kanit-Regular.ttf') format('ttf');
@@ -13,11 +12,12 @@ page-hospital {
         font-family: 'Kanit';
       }
       
-    .map{
-        //width:100%; 
-        height:50%;
-      }
-    .data {
-        height:50%;
-      }
+      .map{
+          //width:100%; 
+          height:50%;
+        }
+
+      .data {
+          height:35%;
+        }
 }  

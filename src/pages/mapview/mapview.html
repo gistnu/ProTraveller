@@ -1,4 +1,3 @@
-
 <ion-header >
     <ion-navbar >
         <button ion-button menuToggle class="home_bg">
@@ -10,10 +9,11 @@
 
 
 
-<ion-content >
-  <ion-card *ngFor="let c of items">
+<ion-content  class="kanit" >
+    <ion-card id="map" class="map"></ion-card>
+  <ion-card *ngFor="let c of prov">
 
-  <div id="map" style="width:100%; height:100%;"></div>
+  
 
   <ion-fab right top>
     <button ion-fab>
@@ -31,7 +31,7 @@
 
   <ion-item>
     <ion-icon name="flash" item-left large ></ion-icon>
-    <h2>พบการเกิดโรคในระยะใกล้เคียง </h2>
+    <h2>พบการเกิดโรคในระยะ 2 กิโลเมตร</h2>
     
   </ion-item>
 
@@ -43,36 +43,17 @@
   <table class="table">
                     <tbody>
 
-                        <tr class="table-row">
+                        <tr class="table-row" *ngFor="let c of items">
                             <td class="table-text">
-                              <h6>หมู่บ้าน บ้านกอก</h6>
+                              <h6>{{c.properties.vill_nam_t}}</h6>
                                 
                             </td>
-                            <td>
-                              <p>พบผู้ป่วย 1 ราย</p>
+                            <td >
+                              <p>พบผู้ป่วย {{c.properties.patient}} ราย</p>
                             </td>
                         </tr>
 
-                        <tr class="table-row">
-                            <td class="table-text">
-                              <h6>หมู่บ้าน ท่าทองตะวันตก</h6>
-                                
-                            </td>
-                            <td>
-                              <p>พบผู้ป่วย 1 ราย</p>
-                            </td>
-                        </tr>
-
-                        <tr class="table-row">
-                            <td class="table-text">
-                              <h6>หมู่บ้าน หนองหัวยางเหนือ</h6>
-                                
-                            </td>
-                            <td>
-                              <p>พบผู้ป่วย 1 ราย</p>
-                            </td>
-                        </tr>
-
+                   
 
                     </tbody>
                 </table>
@@ -92,7 +73,7 @@
       
     </span>
 
-    <button ion-button icon-left clear item-end>
+    <button ion-button icon-left clear item-end (click)="itemSelected(c)">
       <ion-icon name="navigate"></ion-icon>
       ค้นหาเส้นทางมาที่นี่
     </button>

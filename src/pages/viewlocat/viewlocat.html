@@ -9,9 +9,10 @@
 
 <ion-content>
 
+    <ion-card id="map" class="map"></ion-card>
+
   <ion-card>
 
-      <div id="map" style="width:100%; height:100%;"></div>
 
       <ion-fab right top>
 	    <button ion-fab>
@@ -21,16 +22,26 @@
 
     <ion-item>
       <ion-icon name="pin" item-start large></ion-icon>
-      <h2>ตรวจสอบตำแหน่งปัจจุบันที่ท่านอยู่</h2>
+      <h3 class="kanit">ตรวจสอบตำแหน่งปัจจุบันที่ท่านอยู่</h3>
       <p></p>
     </ion-item>
     <ion-item>
     <ion-icon name="star" item-left large ></ion-icon>
-    <h2>ไม่พบการเกิดโรคในระยะใกล้เคียง </h2>
+    <h3 class="kanit">พบการเกิดโรคในระยะ 2 กิโลเมตร </h3>
     
   </ion-item>
 
 
+
   </ion-card>
- 
+
+  <ion-scroll scrollX="true" scrollY="true" class="data">        
+      <ion-list>
+        <ion-item ion-item *ngFor="let c of items">
+          <h3 class="kanit">{{c.properties.vill_nam_t}}</h3>
+          <p>พบผู้ป่วย {{c.properties.patient}} ราย </p>
+        </ion-item>
+      </ion-list>
+  </ion-scroll>
+
 </ion-content>
