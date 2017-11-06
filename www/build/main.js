@@ -583,6 +583,13 @@ var HospitalPage = (function () {
         });
         modal.present();
     };
+    HospitalPage.prototype.doRefresh = function (refresher) {
+        console.log('Begin async operation', refresher);
+        setTimeout(function () {
+            console.log('Async operation has ended');
+            refresher.complete();
+        }, 2000);
+    };
     return HospitalPage;
 }());
 __decorate([
