@@ -100,6 +100,8 @@ export class HospitalPage {
     
   }
 
+
+
   showLocation() {
     this.geoLocation.getCurrentPosition().then((res) => {
         this.center = [res.coords.latitude, res.coords.longitude];
@@ -140,6 +142,16 @@ export class HospitalPage {
         lat_lon: c.properties.lat + ',' + c.properties.lon
       });
     modal.present();
+  }
+
+
+ doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
   }
 
 }

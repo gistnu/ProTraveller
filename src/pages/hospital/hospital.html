@@ -7,8 +7,18 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
 
     <ion-card id="map" class="map"></ion-card>
     <ion-fab right top>
@@ -27,5 +37,8 @@
         </ion-item>
       </ion-list>
   </ion-scroll>
+
+
+  
 
 </ion-content>

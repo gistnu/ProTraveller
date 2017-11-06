@@ -38,25 +38,15 @@
   <ion-item>
 
   
+<ion-grid>
 
+  <ion-row *ngFor="let c of items">
+    <ion-col col-6>{{c.properties.vill_nam_t}}</ion-col>
+    <ion-col col-6>พบผู้ป่วย {{c.properties.patient}} ราย</ion-col>
+  </ion-row>
 
-  <table class="table">
-                    <tbody>
+</ion-grid>
 
-                        <tr class="table-row" *ngFor="let c of items">
-                            <td class="table-text">
-                              <h6>{{c.properties.vill_nam_t}}</h6>
-                                
-                            </td>
-                            <td >
-                              <p>พบผู้ป่วย {{c.properties.patient}} ราย</p>
-                            </td>
-                        </tr>
-
-                   
-
-                    </tbody>
-                </table>
 
   </ion-item>
 
