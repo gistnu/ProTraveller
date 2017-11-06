@@ -25535,6 +25535,31 @@ page-direction #map {
   background-size: 100% 100%;
 }
 
+page-hospital {
+  background-color: #387ef5;
+}
+
+@font-face {
+  page-hospital {
+    font-family: 'Kanit';
+    src: url("../assets/fonts/Kanit-Regular.ttf") format("ttf");
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+page-hospital .kanit {
+  font-family: 'Kanit';
+}
+
+page-hospital .map {
+  height: 50%;
+}
+
+page-hospital .data {
+  height: 50%;
+}
+
 .masters {
   background-image: url("http://www2.cgistln.nu.ac.th/web2016/images/slider.jpg");
 }

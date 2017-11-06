@@ -1,124 +1,145 @@
+import {Component, ViewChild, ElementRef} from '@angular/core';
+import L from 'leaflet';
+import {NavController, ModalController} from 'ionic-angular';
+import {NavParams} from 'ionic-angular';
 
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import leaflet from 'leaflet';
-import { NavController, ModalController } from 'ionic-angular';
-import { NavParams } from 'ionic-angular';
+import {DirectionPage} from '../direction/direction';
+import {CourseServiceProvider} from '../../providers/course-service/course-service';
+import {Subscription} from 'rxjs/Subscription';
+import {Item} from '../../models/item';
 
-import { DirectionPage } from '../direction/direction';
-import { CourseServiceProvider } from '../../providers/course-service/course-service';  
-import { Subscription } from 'rxjs/Subscription';  
-import { Item } from '../../models/item';
+import {Geolocation} from '@ionic-native/geolocation';
 
 
 @Component({
-  selector: 'page-hospital',
+  selector: 'page-hospital', 
   templateUrl: 'hospital.html'
 })
+
 export class HospitalPage {
+  @ViewChild('map')mapContainer : ElementRef;
+  map : L.map;  
+  center : any;
+  marker : any;
+  circle : any;
 
+  items : Item[];
+  sub : Subscription;
+  id_prov : number;
 
-
-@ViewChild('map') mapContainer: ElementRef;
-    map: any;
-    
-    items: Item[];
-    sub: Subscription;
-    id_prov:number;
-
-    constructor(public modalCtrl: ModalController,
-                public navCtrl: NavController,
-                public navParams: NavParams,
-                private courseServiceProvider:CourseServiceProvider
-    ) {
-    this.id_prov = this.navParams.get('id_prov'); 
-    
-    }
-
-    
-
-  private getHospital() {
-    this.courseServiceProvider.getHospital().subscribe(
-
-    (res) => this.items = res
-
-    );
-
+  constructor(
+    public modalCtrl : ModalController, 
+    public navCtrl : NavController, 
+    public navParams : NavParams, 
+    private courseServiceProvider : CourseServiceProvider, 
+    public geoLocation : Geolocation,
+  ) {
+    this.id_prov = this.navParams.get('id_prov');
   }
 
-  
   ionViewWillEnter() {
-    this.getHospital();
   }
 
+  ionViewDidLoad() {
+    this.loadMap();
+  }  
 
+  loadMap() {
+    this.geoLocation.getCurrentPosition().then((res) => {
+      this.center = [res.coords.latitude, res.coords.longitude];      
+      let pos = [res.coords.latitude, res.coords.longitude];
 
-
-  ionViewDidEnter() {
-    this.loadmap();
-  }
- 
-loadmap() {
-    this.map = leaflet.map("map").fitWorld();
-
-    leaflet.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-
-      attributions: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-      maxZoom: 18
-
-    }).addTo(this.map);
-
-    this.map.locate({
-      setView: true,
-      maxZoom: 13
-    }).on('locationfound', (e) => {
-      let markerGroup = leaflet.featureGroup();
-      let marker: any = leaflet.marker([e.latitude, e.longitude]).on('click', () => {
-        alert('Marker clicked');
-      })
-      markerGroup.addLayer(marker);
-      this.map.addLayer(markerGroup);
-
-       
-       leaflet.circle([e.latitude, e.longitude], {
-          color: 'red',
-          fillColor: '#f03',
-          fillOpacity: 0.2,
-          radius: 2000
-        }).addTo(this.map);
-
+      let mapOption = {
+        center: this.center,
+        zoom: 12
+      };
   
-console.log(e.latitude, e.longitude);
+      this.map = L.map('map', mapOption);
+      this.marker = L.marker();
+  
+      let osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attributions: 'OSM',
+        maxZoom: 11
+      }).addTo(this.map);
+  
+      let mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access' +
+          '_token=pk.eyJ1IjoicGF0cmlja3IiLCJhIjoiY2l2aW9lcXlvMDFqdTJvbGI2eXUwc2VjYSJ9.trTzs' +
+          'dDXD2lMJpTfCVsVuA').addTo(this.map);
+  
+      let baseLayers = {
+        "Mapbox": mapbox,
+        "OpenStreetMap": osm
+      };
+      let overlays = {
+        //"hcenter": hcenter,
+        // "dengue": dengue
+      };
+      //L.control.layers(baseLayers, overlays).addTo(this.map);
 
-        leaflet.tileLayer.wms("http://www.map.nu.ac.th/geoserver-hgis/wms?", {
+
+      this.marker = L.marker(pos, {draggable: false}).addTo(this.map);
+      this.circle = L.circle(pos, {radius: 10000}).addTo(this.map);        
+
+      let hcenter = L.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
           layers: 'vmobile_admin:dpc9_health_center',
-          cql_filter: 'DWITHIN(geom,POINT('+e.longitude+' '+e.latitude+'),0.02,meters)',
+          cql_filter: 'DWITHIN(geom,POINT('+pos[1]+' '+pos[0]+'),10,kilometers)',
           format: 'image/png',
           transparent: true,
-          attribution: '&copy; <a href="http://GISTNU.com">GISTNU</a>'
-      }).addTo(this.map);
+          attribution: '&copy; <a href="http://GISTNU.com">GISTNU</a>',
+          zIndex:5
+      }).addTo(this.map);        
+        this.marker.on("dragend", function (e) {
+        pos = [e.target._latlng.lat, e.target._latlng.lng];     
+      }); 
+    
+    this.sub = this.courseServiceProvider.getHospitalGS(this.center[1], this.center[0]).subscribe(
+      (res)=> this.items=res
+    );
 
-
-      }).on('locationerror', (err) => {
-        alert(err.message);
     })
-
-
-
-       
-
+    
   }
 
+  showLocation() {
+    this.geoLocation.getCurrentPosition().then((res) => {
+        this.center = [res.coords.latitude, res.coords.longitude];
+        let pos = [res.coords.latitude, res.coords.longitude];
+        this.map.setView(pos);
 
-    itemSelected(c):void {
-        let modal = this.modalCtrl.create(DirectionPage,{
-        id_hospital : c.id_hospital,
-        lat_place : c.lat_place,
-        lon_place : c.lon_place,
-        lat_lon : c.lat_place+','+c.lon_place,
+        //add marker and circle
+        this.marker = L.marker(pos, {draggable: false}).addTo(this.map);
+        this.circle = L.circle(pos, {radius: 10000}).addTo(this.map);        
+
+        let hcenter = L.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
+            layers: 'vmobile_admin:dpc9_health_center',
+            cql_filter: 'DWITHIN(geom,POINT('+pos[1]+' '+pos[0]+'),10,kilometers)',
+            format: 'image/png',
+            transparent: true,
+            attribution: '&copy; <a href="http://GISTNU.com">GISTNU</a>',
+            zIndex:5
+        }).addTo(this.map);        
+          this.marker.on("dragend", function (e) {
+          pos = [e.target._latlng.lat, e.target._latlng.lng];
+          //console.log(pos);          
         });
-        modal.present();
-    }  
- 
+      })  
+      
+      this.sub = this.courseServiceProvider.getHospitalGS(this.center[1], this.center[0]).subscribe(
+        (res)=> this.items=res
+      );
+  }
+
+  itemSelected(c) : void {
+    console.log(this.center);
+    let modal = this.modalCtrl
+      .create(DirectionPage, {
+        id_hospital: c.properties.maincode,
+        id_cuurent: this.center[0]+','+this.center[1],
+        lat_place: c.properties.lat,
+        lon_place: c.properties.lon,
+        lat_lon: c.properties.lat + ',' + c.properties.lon
+      });
+    modal.present();
+  }
+
 }
-
-

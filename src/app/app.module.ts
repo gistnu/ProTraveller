@@ -14,7 +14,7 @@ import { ViewlocatPage } from '../pages/viewlocat/viewlocat';
 import { DirectionPage } from '../pages/direction/direction';
 import { CoursePage } from '../pages/course/course';
 
-
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -61,7 +61,8 @@ import { HttpModule } from '@angular/http';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {provide: ErrorHandler, useClass: IonicErrorHandler},    
+    Geolocation,
     CourseServiceProvider
   ]
 })

@@ -29,8 +29,18 @@ return this.http.get('http://www2.cgistln.nu.ac.th/app_gistnu/php/select_place.p
 getHospital():Observable<Item[]> {
 return this.http.get('http://www2.cgistln.nu.ac.th/app_gistnu/php/select_hospital.php')
 .map((res:Response) => <Item[]> res.json());
-
-
 }
+
+getHospitalGS(lon : number, lat : number):Observable<Item[]> {
+    return this.http
+    .get('http://www.gistnu.com/geoserver-hgis/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=vmobile_admin:dpc9_health_center&cql_filter=DWITHIN(geom,POINT('+lon+'%20'+lat+'),10,kilometers)&outputFormat=application%2Fjson')
+    .map((res:Response) => <Item[]> res.json().features);    
+   }
+
+getDengue(lon : number, lat : number):Observable<Item[]> {
+    return this.http
+    .get('http://www.gistnu.com/geoserver-hgis/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=hgis:v_all_dengue_2015p&cql_filter=DWITHIN(geom,POINT('+lon+'%20'+lat+'),2,kilometers)&outputFormat=application%2Fjson')
+    .map((res:Response) => <Item[]> res.json().features);    
+   }
  
 }
