@@ -7,19 +7,11 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="kanit">
 
     <ion-card id="map" class="map"></ion-card>
 
   <ion-card>
-
-
-      <ion-fab right top>
-	    <button ion-fab>
-	      <ion-icon name="pin"></ion-icon>
-	    </button>
-	  </ion-fab>
-
     <ion-item>
       <ion-icon name="pin" item-start large></ion-icon>
       <h3 class="kanit">ตรวจสอบตำแหน่งปัจจุบันที่ท่านอยู่</h3>
@@ -36,10 +28,9 @@
   </ion-card>
 
   <ion-scroll scrollX="true" scrollY="true" class="data">     
-     
       <ion-list>
         <ion-item ion-item *ngFor="let c of items">
-          <h3 class="kanit">{{c.properties.vill_nam_t}}</h3>
+          <h3 >{{c.properties.vill_nam_t}}</h3>
           <p>พบผู้ป่วย {{c.properties.patient}} ราย </p>
         </ion-item>
       </ion-list>

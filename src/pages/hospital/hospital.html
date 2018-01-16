@@ -7,16 +7,16 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content>
+<ion-content class="kanit">
 
-  <ion-refresher (ionRefresh)="doRefresh($event)">
+ <!--  <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
       pullingText="Pull to refresh"
       refreshingSpinner="circles"
       refreshingText="Refreshing...">
     </ion-refresher-content>
-  </ion-refresher>
+  </ion-refresher> -->
 
 
 
@@ -27,13 +27,13 @@
       </button>
     </ion-fab>
 
-    <ion-item-divider color="light" class="kanit">สถานพยาบาลในระยะ 10 กิโลเมตร</ion-item-divider>
+    <ion-item-divider color="light">สถานพยาบาลในระยะ 10 กิโลเมตร</ion-item-divider>
 
     <ion-scroll scrollX="true" scrollY="true" class="data">        
       <ion-list>
         <ion-item ion-item *ngFor="let c of items">
-          <h3 class="kanit">{{c.properties.name}}</h3>
-          <button ion-button clear item-end class="kanit" (click)="itemSelected(c)">ค้นหาเส้นทาง</button>
+          <h3>{{c.properties.name}}</h3>
+          <button ion-button clear item-end (click)="itemSelected(c)">ค้นหาเส้นทาง</button>
         </ion-item>
       </ion-list>
   </ion-scroll>

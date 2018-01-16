@@ -172,7 +172,7 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/home/home.html"*/'\n<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding class="home_bg">\n    <ion-grid  >\n      <ion-row>\n        <ion-col>\n           <a (click)="goToList()"><img src="../assets/menu1.png" alt=""></a>\n        </ion-col>\n        <ion-col>\n           <a (click)="goToMap()"><img src="../assets/menu2.png" alt=""></a>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n            <a (click)="goToHospital()"><img src="../assets/menu3.png" alt=""></a>\n        </ion-col>\n        <ion-col>\n           <a (click)="goToFaq()"><img src="../assets/menu4.png" alt=""></a>\n        </ion-col>\n      </ion-row>\n    </ion-grid> \n\n\n\n</ion-content>'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/home/home.html"*/'\n<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle >\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content padding class="home_bg">\n    <ion-grid  >\n      <ion-row>\n        <ion-col>\n           <a (click)="goToList()"><img src="../assets/menu1.png" alt=""></a>\n        </ion-col>\n        <ion-col>\n           <a (click)="goToMap()"><img src="../assets/menu2.png" alt=""></a>\n        </ion-col>\n      </ion-row>\n      <ion-row>\n        <ion-col>\n            <a (click)="goToHospital()"><img src="../assets/menu3.png" alt=""></a>\n        </ion-col>\n        <ion-col>\n           <a (click)="goToFaq()"><img src="../assets/menu4.png" alt=""></a>\n        </ion-col>\n      </ion-row>\n    </ion-grid> \n\n\n\n</ion-content>'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/home/home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
@@ -230,7 +230,7 @@ var ListPage = (function () {
 }());
 ListPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-list',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/list/list.html"*/'<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n<ion-content padding  class="kanit">\n\n\n  \n  <ion-card ion-item *ngFor = "let c of courses"  >\n    <a (click)="itemSelected(c)">\n    <img src="../assets/{{c.img_prov}}">\n\n    <ion-item>\n      <ion-icon name="pin" item-start large></ion-icon>\n      <h2>{{c.name_prov}}</h2>\n      <p>{{c.detail_prov}}</p>\n    </ion-item>\n\n    <ion-item>\n      <span item-left>7 สถานที่แนะนำ</span>\n      <button ion-button icon-left clear item-end>\n        <ion-icon name="navigate"></ion-icon>\n        Start\n      </button>\n    </ion-item>\n    </a>\n  </ion-card>\n  \n\n</ion-content>\n'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/list/list.html"*/
+        selector: 'page-list',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/list/list.html"*/'<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n        \n    </ion-navbar>\n</ion-header>\n\n\n<ion-content padding  class="kanit bg "  style="white-space: normal;">\n\n<ion-searchbar\n  [(ngModel)]="myInput"\n  [animated]="shouldShowCancel"\n  (ionInput)="onInput($event)"\n  (ionCancel)="onCancel($event)">\n</ion-searchbar>\n  \n  <ion-card ion-item *ngFor = "let c of courses"  >\n    <a (click)="itemSelected(c)">\n    <img src="../assets/{{c.img_prov}}">\n\n    <ion-item>\n      <ion-icon name="pin" item-start large></ion-icon>\n      <h2>{{c.name_prov}}</h2>\n      <p>{{c.detail_prov}}</p>\n    </ion-item>\n\n    <ion-item>\n      <span item-left>7 สถานที่แนะนำ</span>\n      <button ion-button icon-left clear item-end>\n        <ion-icon name="navigate"></ion-icon>\n        Start\n      </button>\n    </ion-item>\n    </a>\n  </ion-card>\n  \n\n</ion-content>\n'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/list/list.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */],
@@ -284,7 +284,7 @@ var MapviewPage = (function () {
     MapviewPage.prototype.getProvDetail = function () {
         var _this = this;
         this.sub = this.courseServiceProvider.getProvDetail(this.id_place).subscribe(function (res) { return _this.prov = res; });
-        console.log(this.prov);
+        console.log(this.id_place);
     };
     MapviewPage.prototype.ionViewWillEnter = function () {
         this.getProvDetail();
@@ -302,40 +302,34 @@ var MapviewPage = (function () {
         console.log(this.center);
         this.map = __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.map('map', mapOption);
         this.marker = __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.marker();
-        var osm = __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attributions: 'OSM',
             maxZoom: 14
         }).addTo(this.map);
-        var mapbox = __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access' +
+        __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access' +
             '_token=pk.eyJ1IjoicGF0cmlja3IiLCJhIjoiY2l2aW9lcXlvMDFqdTJvbGI2eXUwc2VjYSJ9.trTzs' +
             'dDXD2lMJpTfCVsVuA').addTo(this.map);
-        var tambon = __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
+        __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
             layers: 'vmobile_admin:dpc9_tambon_4326',
             format: 'image/png',
             transparent: true,
             attribution: '&copy; <a href="http://GISTNU.com">GISTNU</a>'
         }).addTo(this.map);
-        var amphoe = __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
+        __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
             layers: 'vmobile_admin:dpc9_amphoe_4326',
             format: 'image/png',
             transparent: true,
             attribution: '&copy; <a href="http://GISTNU.com">GISTNU</a>'
         }).addTo(this.map);
-        var province = __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
+        __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
             layers: 'vmobile_admin:dpc9_province_4326',
             format: 'image/png',
             transparent: true,
             attribution: '&copy; <a href="http://GISTNU.com">GISTNU</a>'
         }).addTo(this.map);
-        var baseLayers = {
-            "Mapbox": mapbox,
-            "OpenStreetMap": osm
-        };
-        var overlays = {};
-        //L.control.layers(baseLayers, overlays).addTo(this.map);
         this.marker = __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.marker(this.center, { draggable: false }).addTo(this.map);
         // this.circle = L.circle(pos, {radius: 2000}).addTo(this.map);  
-        var villDengue = __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
+        __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
             layers: 'hgis:v_all_dengue_2015p',
             cql_filter: 'DWITHIN(geom,POINT(' + this.lon + ' ' + this.lat + '),2,kilometers)',
             format: 'image/png',
@@ -343,7 +337,7 @@ var MapviewPage = (function () {
             attribution: '&copy; <a href="http://GISTNU.com">GISTNU</a>',
             zIndex: 6
         }).addTo(this.map);
-        var villDensity = __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
+        __WEBPACK_IMPORTED_MODULE_5_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
             layers: 'hgis:v_all_dengue_2015',
             cql_filter: 'DWITHIN(geom,POINT(' + this.lon + ' ' + this.lat + '),2,kilometers)',
             format: 'image/png',
@@ -359,13 +353,13 @@ var MapviewPage = (function () {
         modal.present();
     };
     MapviewPage.prototype.itemSelected = function (c) {
-        console.log(c);
         var modal = this.modalCtrl
             .create(__WEBPACK_IMPORTED_MODULE_4__direction_direction__["a" /* DirectionPage */], {
-            id_hospital: c.id_place,
-            lat_place: c.lat,
-            lon_place: c.lon,
-            lat_lon: c.lat + ',' + c.lon
+            id_hospital: this.id_place,
+            id_cuurent: this.center[0] + ',' + this.center[1],
+            lat_place: this.lat,
+            lon_place: this.lon,
+            lat_lon: this.lat + ',' + this.lon
         });
         modal.present();
     };
@@ -377,7 +371,7 @@ __decorate([
 ], MapviewPage.prototype, "mapContainer", void 0);
 MapviewPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-mapview',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/mapview/mapview.html"*/'<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n\n\n<ion-content  class="kanit" >\n    <ion-card id="map" class="map"></ion-card>\n  <ion-card *ngFor="let c of prov">\n\n  \n\n  <ion-fab right top>\n    <button ion-fab>\n      <ion-icon name="pin"></ion-icon>\n    </button>\n  </ion-fab>\n\n  <ion-item>\n    <ion-thumbnail item-start>\n      <img src="../assets/img_trav/{{c.img_place}}">\n    </ion-thumbnail>\n      <h2>{{c.name_place}}</h2>\n      <p>ที่ตั้ง : {{c.addre_place}}</p>\n  </ion-item>\n\n  <ion-item>\n    <ion-icon name="flash" item-left large ></ion-icon>\n    <h2>พบการเกิดโรคในระยะ 2 กิโลเมตร</h2>\n    \n  </ion-item>\n\n  <ion-item>\n\n  \n<ion-grid>\n\n  <ion-row *ngFor="let c of items">\n    <ion-col col-6>{{c.properties.vill_nam_t}}</ion-col>\n    <ion-col col-6>พบผู้ป่วย {{c.properties.patient}} ราย</ion-col>\n  </ion-row>\n\n</ion-grid>\n\n\n  </ion-item>\n\n\n\n  <ion-item>\n\n    <span item-left>\n\n        <button ion-button icon-left clear item-end (click)="goToHowto()">\n          <ion-icon name="navigate"></ion-icon>\n          แนวทางป้องกัน\n        </button>\n      \n    </span>\n\n    <button ion-button icon-left clear item-end (click)="itemSelected(c)">\n      <ion-icon name="navigate"></ion-icon>\n      ค้นหาเส้นทางมาที่นี่\n    </button>\n\n  </ion-item>\n\n</ion-card>\n\n</ion-content>'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/mapview/mapview.html"*/
+        selector: 'page-mapview',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/mapview/mapview.html"*/'<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n\n\n\n<ion-content  class="kanit" >\n    <ion-card id="map" class="map"></ion-card>\n\n  <ion-card *ngFor="let c of prov">\n\n  \n  <ion-item>\n    <ion-thumbnail item-start>\n      <img src="../assets/img_trav/{{c.img_place}}">\n    </ion-thumbnail>\n      <h2>{{c.name_place}}</h2>\n      <p>ที่ตั้ง : {{c.addre_place}}</p>\n  </ion-item>\n\n  <ion-item>\n    <ion-icon name="flash" item-left large ></ion-icon>\n    <h2>พบการเกิดโรคในระยะ 2 กิโลเมตร</h2>\n    \n  </ion-item>\n\n\n</ion-card>\n\n\n  <ion-scroll scrollX="true" scrollY="true" class="data">     \n      <ion-list>\n        <ion-item ion-item *ngFor="let c of items">\n          <h3 >{{c.properties.vill_nam_t}}</h3>\n          <p>พบผู้ป่วย {{c.properties.patient}} ราย </p>\n        </ion-item>\n      </ion-list>\n  </ion-scroll>\n\n\n  <ion-item>\n\n    <span item-left>\n\n        <button ion-button icon-left clear item-end (click)="goToHowto()">\n          <ion-icon name="navigate"></ion-icon>\n          แนวทางป้องกัน\n        </button>\n      \n    </span>\n\n    <button ion-button icon-left clear item-end (click)="itemSelected(c)">\n      <ion-icon name="navigate"></ion-icon>\n      ค้นหาเส้นทางมาที่นี่\n    </button>\n\n  </ion-item>\n\n\n</ion-content>'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/mapview/mapview.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
@@ -456,7 +450,7 @@ var FaqPage = (function () {
 }());
 FaqPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-faq',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/faq/faq.html"*/'\n<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n <ion-list>\n  <ion-item>\n    <ion-avatar item-start>\n      <img src="../assets/question.png" alt="">\n    </ion-avatar>\n    <h2>คำถามที่พบบ่อย</h2>\n  </ion-item>\n</ion-list>\n\n\n<ion-item><ion-icon name="arrow-dropdown-circle"></ion-icon> โรคไข้เลือกออกคืออะไร ?</ion-item>\n<ion-item><ion-icon name="arrow-dropdown-circle"></ion-icon> การติดต่อสามารถติดต่อทางไหนได้บ้าง ? </ion-item>\n<ion-item><ion-icon name="arrow-dropdown-circle"></ion-icon> การรักษาเบื้องต้นเมื่อเกิดอาการ</ion-item>\n<ion-item><ion-icon name="arrow-dropdown-circle"></ion-icon> อาการของโรคเป็นอย่างไร ?</ion-item>\n<ion-item><ion-icon name="arrow-dropdown-circle"></ion-icon> การป้องกันสามารถทำได้อย่างไร ?  ?</ion-item>\n  \n</ion-content>\n'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/faq/faq.html"*/
+        selector: 'page-faq',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/faq/faq.html"*/'\n<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content  class="kanit">\n <ion-list>\n  <ion-item>\n    <ion-avatar item-start>\n      <img src="../assets/question.png" alt="">\n    </ion-avatar>\n    <h2>คำถามที่พบบ่อย</h2>\n  </ion-item>\n</ion-list>\n\n\n<ion-item><ion-icon name="arrow-dropdown-circle"></ion-icon> โรคไข้เลือกออกคืออะไร ?</ion-item>\n<ion-item><ion-icon name="arrow-dropdown-circle"></ion-icon> การติดต่อสามารถติดต่อทางไหนได้บ้าง ? </ion-item>\n<ion-item><ion-icon name="arrow-dropdown-circle"></ion-icon> การรักษาเบื้องต้นเมื่อเกิดอาการ</ion-item>\n<ion-item><ion-icon name="arrow-dropdown-circle"></ion-icon> อาการของโรคเป็นอย่างไร ?</ion-item>\n<ion-item><ion-icon name="arrow-dropdown-circle"></ion-icon> การป้องกันสามารถทำได้อย่างไร ?  ?</ion-item>\n  \n</ion-content>\n'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/faq/faq.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
 ], FaqPage);
@@ -518,22 +512,25 @@ var HospitalPage = (function () {
             };
             _this.map = __WEBPACK_IMPORTED_MODULE_1_leaflet___default.a.map('map', mapOption);
             _this.marker = __WEBPACK_IMPORTED_MODULE_1_leaflet___default.a.marker();
-            var osm = __WEBPACK_IMPORTED_MODULE_1_leaflet___default.a.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            __WEBPACK_IMPORTED_MODULE_1_leaflet___default.a.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attributions: 'OSM',
                 maxZoom: 11
             }).addTo(_this.map);
-            var mapbox = __WEBPACK_IMPORTED_MODULE_1_leaflet___default.a.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access' +
+            __WEBPACK_IMPORTED_MODULE_1_leaflet___default.a.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access' +
                 '_token=pk.eyJ1IjoicGF0cmlja3IiLCJhIjoiY2l2aW9lcXlvMDFqdTJvbGI2eXUwc2VjYSJ9.trTzs' +
                 'dDXD2lMJpTfCVsVuA').addTo(_this.map);
-            var baseLayers = {
-                "Mapbox": mapbox,
-                "OpenStreetMap": osm
-            };
-            var overlays = {};
-            //L.control.layers(baseLayers, overlays).addTo(this.map);
+            // let baseLayers = {
+            //   "Mapbox": mapbox,
+            //   "OpenStreetMap": osm
+            // };
+            // let overlays = {
+            //   //"hcenter": hcenter,
+            //   // "dengue": dengue
+            // };
+            // //L.control.layers(baseLayers, overlays).addTo(this.map);
             _this.marker = __WEBPACK_IMPORTED_MODULE_1_leaflet___default.a.marker(pos, { draggable: false }).addTo(_this.map);
             _this.circle = __WEBPACK_IMPORTED_MODULE_1_leaflet___default.a.circle(pos, { radius: 10000 }).addTo(_this.map);
-            var hcenter = __WEBPACK_IMPORTED_MODULE_1_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
+            __WEBPACK_IMPORTED_MODULE_1_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
                 layers: 'vmobile_admin:dpc9_health_center',
                 cql_filter: 'DWITHIN(geom,POINT(' + pos[1] + ' ' + pos[0] + '),10,kilometers)',
                 format: 'image/png',
@@ -556,7 +553,7 @@ var HospitalPage = (function () {
             //add marker and circle
             _this.marker = __WEBPACK_IMPORTED_MODULE_1_leaflet___default.a.marker(pos, { draggable: false }).addTo(_this.map);
             _this.circle = __WEBPACK_IMPORTED_MODULE_1_leaflet___default.a.circle(pos, { radius: 10000 }).addTo(_this.map);
-            var hcenter = __WEBPACK_IMPORTED_MODULE_1_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
+            __WEBPACK_IMPORTED_MODULE_1_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
                 layers: 'vmobile_admin:dpc9_health_center',
                 cql_filter: 'DWITHIN(geom,POINT(' + pos[1] + ' ' + pos[0] + '),10,kilometers)',
                 format: 'image/png',
@@ -583,13 +580,6 @@ var HospitalPage = (function () {
         });
         modal.present();
     };
-    HospitalPage.prototype.doRefresh = function (refresher) {
-        console.log('Begin async operation', refresher);
-        setTimeout(function () {
-            console.log('Async operation has ended');
-            refresher.complete();
-        }, 2000);
-    };
     return HospitalPage;
 }());
 __decorate([
@@ -598,7 +588,7 @@ __decorate([
 ], HospitalPage.prototype, "mapContainer", void 0);
 HospitalPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-hospital',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/hospital/hospital.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle class="home_bg">\n    </button>\n    <ion-title>\n      <img src="../assets/logobanner.png" alt="">\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content>\n\n  <ion-refresher (ionRefresh)="doRefresh($event)">\n    <ion-refresher-content\n      pullingIcon="arrow-dropdown"\n      pullingText="Pull to refresh"\n      refreshingSpinner="circles"\n      refreshingText="Refreshing...">\n    </ion-refresher-content>\n  </ion-refresher>\n\n\n\n    <ion-card id="map" class="map"></ion-card>\n    <ion-fab right top>\n      <button ion-fab (click)=\'showLocation()\'>\n        <ion-icon name="pin"></ion-icon>\n      </button>\n    </ion-fab>\n\n    <ion-item-divider color="light" class="kanit">สถานพยาบาลในระยะ 10 กิโลเมตร</ion-item-divider>\n\n    <ion-scroll scrollX="true" scrollY="true" class="data">        \n      <ion-list>\n        <ion-item ion-item *ngFor="let c of items">\n          <h3 class="kanit">{{c.properties.name}}</h3>\n          <button ion-button clear item-end class="kanit" (click)="itemSelected(c)">ค้นหาเส้นทาง</button>\n        </ion-item>\n      </ion-list>\n  </ion-scroll>\n\n\n  \n\n</ion-content>'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/hospital/hospital.html"*/
+        selector: 'page-hospital',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/hospital/hospital.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle class="home_bg">\n    </button>\n    <ion-title>\n      <img src="../assets/logobanner.png" alt="">\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content class="kanit">\n\n <!--  <ion-refresher (ionRefresh)="doRefresh($event)">\n    <ion-refresher-content\n      pullingIcon="arrow-dropdown"\n      pullingText="Pull to refresh"\n      refreshingSpinner="circles"\n      refreshingText="Refreshing...">\n    </ion-refresher-content>\n  </ion-refresher> -->\n\n\n\n    <ion-card id="map" class="map"></ion-card>\n    <ion-fab right top>\n      <button ion-fab (click)=\'showLocation()\'>\n        <ion-icon name="pin"></ion-icon>\n      </button>\n    </ion-fab>\n\n    <ion-item-divider color="light">สถานพยาบาลในระยะ 10 กิโลเมตร</ion-item-divider>\n\n    <ion-scroll scrollX="true" scrollY="true" class="data">        \n      <ion-list>\n        <ion-item ion-item *ngFor="let c of items">\n          <h3>{{c.properties.name}}</h3>\n          <button ion-button clear item-end (click)="itemSelected(c)">ค้นหาเส้นทาง</button>\n        </ion-item>\n      </ion-list>\n  </ion-scroll>\n\n\n  \n\n</ion-content>'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/hospital/hospital.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* ModalController */],
         __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */],
@@ -658,40 +648,43 @@ var ViewlocatPage = (function () {
             };
             _this.map = __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.map('map', mapOption);
             _this.marker = __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.marker();
-            var osm = __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attributions: 'OSM',
                 maxZoom: 14
             }).addTo(_this.map);
-            var mapbox = __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access' +
+            __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access' +
                 '_token=pk.eyJ1IjoicGF0cmlja3IiLCJhIjoiY2l2aW9lcXlvMDFqdTJvbGI2eXUwc2VjYSJ9.trTzs' +
                 'dDXD2lMJpTfCVsVuA').addTo(_this.map);
-            var tambon = __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
+            __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
                 layers: 'vmobile_admin:dpc9_tambon_4326',
                 format: 'image/png',
                 transparent: true,
                 attribution: '&copy; <a href="http://GISTNU.com">GISTNU</a>'
             }).addTo(_this.map);
-            var amphoe = __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
+            __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
                 layers: 'vmobile_admin:dpc9_amphoe_4326',
                 format: 'image/png',
                 transparent: true,
                 attribution: '&copy; <a href="http://GISTNU.com">GISTNU</a>'
             }).addTo(_this.map);
-            var province = __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
+            __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
                 layers: 'vmobile_admin:dpc9_province_4326',
                 format: 'image/png',
                 transparent: true,
                 attribution: '&copy; <a href="http://GISTNU.com">GISTNU</a>'
             }).addTo(_this.map);
-            var baseLayers = {
-                "Mapbox": mapbox,
-                "OpenStreetMap": osm
-            };
-            var overlays = {};
-            //L.control.layers(baseLayers, overlays).addTo(this.map);
+            // let baseLayers = {
+            //   "Mapbox": mapbox,
+            //   "OpenStreetMap": osm
+            // };
+            // let overlays = {
+            //   //"hcenter": hcenter,
+            //   // "dengue": dengue
+            // };
+            // //L.control.layers(baseLayers, overlays).addTo(this.map);
             _this.marker = __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.marker(pos, { draggable: false }).addTo(_this.map);
             _this.circle = __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.circle(pos, { radius: 2000 }).addTo(_this.map);
-            var villDengue = __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
+            __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
                 layers: 'hgis:v_all_dengue_p',
                 cql_filter: 'DWITHIN(geom,POINT(' + pos[1] + ' ' + pos[0] + '),2,kilometers)',
                 format: 'image/png',
@@ -699,7 +692,7 @@ var ViewlocatPage = (function () {
                 attribution: '&copy; <a href="http://GISTNU.com">GISTNU</a>',
                 zIndex: 6
             }).addTo(_this.map);
-            var villDensity = __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
+            __WEBPACK_IMPORTED_MODULE_2_leaflet___default.a.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
                 layers: 'hgis:v_all_dengue_den',
                 cql_filter: 'DWITHIN(geom,POINT(' + pos[1] + ' ' + pos[0] + '),2,kilometers)',
                 format: 'image/png',
@@ -721,7 +714,7 @@ __decorate([
 ], ViewlocatPage.prototype, "mapContainer", void 0);
 ViewlocatPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-viewlocat',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/viewlocat/viewlocat.html"*/'\n<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n    <ion-card id="map" class="map"></ion-card>\n\n  <ion-card>\n\n\n      <ion-fab right top>\n	    <button ion-fab>\n	      <ion-icon name="pin"></ion-icon>\n	    </button>\n	  </ion-fab>\n\n    <ion-item>\n      <ion-icon name="pin" item-start large></ion-icon>\n      <h3 class="kanit">ตรวจสอบตำแหน่งปัจจุบันที่ท่านอยู่</h3>\n      <p></p>\n    </ion-item>\n    <ion-item>\n    <ion-icon name="star" item-left large ></ion-icon>\n    <h3 class="kanit">พบการเกิดโรคในระยะ 2 กิโลเมตร </h3>\n    \n  </ion-item>\n\n\n\n  </ion-card>\n\n  <ion-scroll scrollX="true" scrollY="true" class="data">     \n     \n      <ion-list>\n        <ion-item ion-item *ngFor="let c of items">\n          <h3 class="kanit">{{c.properties.vill_nam_t}}</h3>\n          <p>พบผู้ป่วย {{c.properties.patient}} ราย </p>\n        </ion-item>\n      </ion-list>\n  </ion-scroll>\n\n</ion-content>'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/viewlocat/viewlocat.html"*/
+        selector: 'page-viewlocat',template:/*ion-inline-start:"/Applications/MAMP/htdocs/protraveller/src/pages/viewlocat/viewlocat.html"*/'\n<ion-header >\n    <ion-navbar >\n        <button ion-button menuToggle class="home_bg">\n    </button>\n        <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>\n    </ion-navbar>\n</ion-header>\n\n<ion-content class="kanit">\n\n    <ion-card id="map" class="map"></ion-card>\n\n  <ion-card>\n    <ion-item>\n      <ion-icon name="pin" item-start large></ion-icon>\n      <h3 class="kanit">ตรวจสอบตำแหน่งปัจจุบันที่ท่านอยู่</h3>\n      <p></p>\n    </ion-item>\n    <ion-item>\n    <ion-icon name="star" item-left large ></ion-icon>\n    <h3 class="kanit">พบการเกิดโรคในระยะ 2 กิโลเมตร </h3>\n    \n  </ion-item>\n\n\n\n  </ion-card>\n\n  <ion-scroll scrollX="true" scrollY="true" class="data">     \n      <ion-list>\n        <ion-item ion-item *ngFor="let c of items">\n          <h3 >{{c.properties.vill_nam_t}}</h3>\n          <p>พบผู้ป่วย {{c.properties.patient}} ราย </p>\n        </ion-item>\n      </ion-list>\n  </ion-scroll>\n\n</ion-content>'/*ion-inline-end:"/Applications/MAMP/htdocs/protraveller/src/pages/viewlocat/viewlocat.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
@@ -937,10 +930,6 @@ var MyApp = (function () {
         this.splashScreen = splashScreen;
         this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */];
         this.initializeApp();
-        // used for an example of ngFor and navigation
-        this.pages = [
-            { title: 'หน้าแรก', component: __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */] }
-        ];
     }
     MyApp.prototype.initializeApp = function () {
         var _this = this;

@@ -3,13 +3,19 @@
         <button ion-button menuToggle class="home_bg">
     </button>
         <ion-title><img src="../assets/logobanner.png" alt="" ></ion-title>
+        
     </ion-navbar>
 </ion-header>
 
 
-<ion-content padding  class="kanit">
+<ion-content padding  class="kanit bg "  style="white-space: normal;">
 
-
+<ion-searchbar
+  [(ngModel)]="myInput"
+  [animated]="shouldShowCancel"
+  (ionInput)="onInput($event)"
+  (ionCancel)="onCancel($event)">
+</ion-searchbar>
   
   <ion-card ion-item *ngFor = "let c of courses"  >
     <a (click)="itemSelected(c)">

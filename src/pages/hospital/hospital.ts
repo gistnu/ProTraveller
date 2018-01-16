@@ -57,30 +57,30 @@ export class HospitalPage {
       this.map = L.map('map', mapOption);
       this.marker = L.marker();
   
-      let osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attributions: 'OSM',
         maxZoom: 11
       }).addTo(this.map);
   
-      let mapbox = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access' +
+      L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access' +
           '_token=pk.eyJ1IjoicGF0cmlja3IiLCJhIjoiY2l2aW9lcXlvMDFqdTJvbGI2eXUwc2VjYSJ9.trTzs' +
           'dDXD2lMJpTfCVsVuA').addTo(this.map);
   
-      let baseLayers = {
-        "Mapbox": mapbox,
-        "OpenStreetMap": osm
-      };
-      let overlays = {
-        //"hcenter": hcenter,
-        // "dengue": dengue
-      };
-      //L.control.layers(baseLayers, overlays).addTo(this.map);
+      // let baseLayers = {
+      //   "Mapbox": mapbox,
+      //   "OpenStreetMap": osm
+      // };
+      // let overlays = {
+      //   //"hcenter": hcenter,
+      //   // "dengue": dengue
+      // };
+      // //L.control.layers(baseLayers, overlays).addTo(this.map);
 
 
       this.marker = L.marker(pos, {draggable: false}).addTo(this.map);
       this.circle = L.circle(pos, {radius: 10000}).addTo(this.map);        
 
-      let hcenter = L.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
+      L.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
           layers: 'vmobile_admin:dpc9_health_center',
           cql_filter: 'DWITHIN(geom,POINT('+pos[1]+' '+pos[0]+'),10,kilometers)',
           format: 'image/png',
@@ -112,7 +112,7 @@ export class HospitalPage {
         this.marker = L.marker(pos, {draggable: false}).addTo(this.map);
         this.circle = L.circle(pos, {radius: 10000}).addTo(this.map);        
 
-        let hcenter = L.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
+        L.tileLayer.wms("http://www.gistnu.com/geoserver-hgis/wms?", {
             layers: 'vmobile_admin:dpc9_health_center',
             cql_filter: 'DWITHIN(geom,POINT('+pos[1]+' '+pos[0]+'),10,kilometers)',
             format: 'image/png',
@@ -145,13 +145,13 @@ export class HospitalPage {
   }
 
 
- doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
+ // doRefresh(refresher) {
+ //    console.log('Begin async operation', refresher);
 
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      refresher.complete();
-    }, 2000);
-  }
+ //    setTimeout(() => {
+ //      console.log('Async operation has ended');
+ //      refresher.complete();
+ //    }, 2000);
+ //  }
 
 }
